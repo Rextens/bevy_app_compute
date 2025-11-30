@@ -99,7 +99,7 @@ fn my_system(
 
     let result: Vec<f32> = compute_worker.read_vec("values");
 
-    compute_worker.write_slice("values", [2., 3., 4., 5.]);
+    compute_worker.write_slice::<f32>("values", &[2., 3., 4., 5.]);
 
     println!("got {:?}", result)
 }
@@ -176,3 +176,4 @@ See [examples](https://github.com/Kjolnyr/bevy_app_compute/tree/main/examples)
 | Bevy | bevy_app_compute |
 | ---- | ---------------- |
 | 0.16 | 0.16             |
+
