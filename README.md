@@ -1,9 +1,8 @@
 # Bevy App Compute
 
 ![MIT/Apache 2.0](https://img.shields.io/badge/license-MIT%2FApache-blue.svg)
-[![Doc](https://docs.rs/bevy_app_compute/badge.svg)](https://docs.rs/bevy_app_compute)
-[![Crate](https://img.shields.io/crates/v/bevy_app_compute.svg)](https://crates.io/crates/bevy_app_compute)
 
+The fork of [bevy_app_compute](https://github.com/Kjolnyr/bevy_app_compute) with support for bevy 0.17.3
 An easy way to run wgpu compute shaders within a bevy app.
 
 ## Getting Started
@@ -12,7 +11,7 @@ Add the following line to your `Cargo.toml`
 
 ```toml
 [dependencies]
-bevy_app_compute = "0.16"
+bevy_app_compute = { git = "https://github.com/Rextens/bevy_app_compute", branch = "0.17.3" }
 ```
 
 ## Usage
@@ -186,15 +185,15 @@ fn on_click_compute(
 ```
 
 (see
-[variable_pass.rs](https://github.com/Kjolnyr/bevy_app_compute/tree/main/examples/variable_pass.rs))
+[variable_pass.rs](https://github.com/Rextens/bevy_app_compute/tree/main/examples/variable_pass.rs))
 
 ## Examples
 
-See [examples](https://github.com/Kjolnyr/bevy_app_compute/tree/main/examples)
+See [examples](https://github.com/Rextens/bevy_app_compute/tree/main/examples)
 
 ## Bevy version mapping
 
-| Bevy | bevy_app_compute |
-| ---- | ---------------- |
-| 0.16 | 0.16             |
+| Bevy   | bevy_app_compute |
+|--------|------------------|
+| 0.17.3 | 0.17             |
 
