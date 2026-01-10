@@ -4,11 +4,11 @@ use bevy::{
     core_pipeline::core_2d::graph::{Core2d, Node2d},
     prelude::*,
     render::{
-        render_graph::{RenderGraphApp, ViewNodeRunner},
+        render_graph::{ViewNodeRunner},
         MainWorld, RenderApp,
     },
 };
-
+use bevy::render::render_graph::RenderGraphExt;
 use crate::bind_groups::{ParticleBindGroup, ParticleBindGroupLayout};
 
 use super::{

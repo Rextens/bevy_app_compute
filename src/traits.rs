@@ -1,8 +1,9 @@
 use bevy::{
     prelude::World,
     reflect::TypePath,
-    render::render_resource::{BindGroupLayout, ShaderDefVal, ShaderRef},
+    render::render_resource::{BindGroupLayout},
 };
+use bevy::shader::{ShaderDefVal, ShaderRef};
 use wgpu::PushConstantRange;
 
 use crate::worker::AppComputeWorker;

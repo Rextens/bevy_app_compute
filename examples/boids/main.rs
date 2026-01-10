@@ -5,6 +5,7 @@ mod worker;
 
 use bevy::color::palettes::css;
 use bevy::diagnostic::{FrameTimeDiagnosticsPlugin, LogDiagnosticsPlugin};
+use bevy::sprite_render::{MeshMaterial2d, ColorMaterial};
 
 use bevy::prelude::*;
 

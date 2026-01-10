@@ -1,4 +1,5 @@
 use bevy::prelude::*;
+use bevy::shader::ShaderRef;
 use bevy_app_compute::prelude::*;
 
 mod common;

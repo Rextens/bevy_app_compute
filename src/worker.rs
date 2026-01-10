@@ -14,7 +14,7 @@ use bevy::{
     },
 };
 use bytemuck::{AnyBitPattern, NoUninit, bytes_of, cast_slice, from_bytes};
-use wgpu::{BindGroupEntry, CommandEncoder, CommandEncoderDescriptor, ComputePassDescriptor};
+use wgpu::{BindGroupEntry, CommandEncoder, CommandEncoderDescriptor, ComputePassDescriptor, PollStatus};
 
 use crate::{
     error::{Error, Result},
@@ -351,29 +351,33 @@ impl<W: ComputeWorker> AppComputeWorker<W> {
             match self
                 .render_device
                 .wgpu_device()
-                .poll(wgpu::MaintainBase::Poll)
+                .poll(wgpu::PollType::Poll)
+                .unwrap()
             {
                 // The first few times the poll occurs the queue will be empty, because wgpu hasn't started anything yet.
                 // We need to wait until `MaintainResult::Ok`, which means wgpu has started to process our data.
                 // Then, the next time the queue is empty (`MaintainResult::SubmissionQueueEmpty`), wgpu has finished processing the data and we are done.
-                wgpu::MaintainResult::SubmissionQueueEmpty => {
+                wgpu::PollStatus::QueueEmpty => {
                     let res = self.submission_queue_processed;
                     self.submission_queue_processed = false;
                     res
                 }
-                wgpu::MaintainResult::Ok => {
+                wgpu::PollStatus::Poll => {
                     self.submission_queue_processed = true;
                     false
                 }
+                PollStatus::WaitSucceeded => unreachable!(),
             }
         } else {
             match self
                 .render_device
                 .wgpu_device()
-                .poll(wgpu::MaintainBase::Wait)
+                .poll(wgpu::wgt::PollType::Wait)
+                .unwrap()
             {
-                wgpu::MaintainResult::SubmissionQueueEmpty => true,
-                wgpu::MaintainResult::Ok => false,
+                wgpu::PollStatus::QueueEmpty => true,
+                wgpu::PollStatus::Poll => false,
+                PollStatus::WaitSucceeded => unreachable!()
             }
         }
     }

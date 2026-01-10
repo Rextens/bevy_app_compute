@@ -2,6 +2,7 @@
 //! input for the next pass.
 
 use bevy::{prelude::*, reflect::TypePath};
+use bevy::shader::ShaderRef;
 use bevy_app_compute::prelude::*;
 
 #[derive(TypePath)]
@@ -49,6 +50,7 @@ fn main() {
                 // Do not create a window on startup.
                 .set(WindowPlugin {
                     primary_window: None,
+                    primary_cursor_options: None,
                     exit_condition: bevy::window::ExitCondition::DontExit,
                     close_when_requested: false,
                 }),

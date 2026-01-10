@@ -5,12 +5,14 @@ use bevy::{
     prelude::{AssetServer, World},
     render::{
         render_resource::{
-            Buffer, ComputePipelineDescriptor, ShaderRef, ShaderType,
+            Buffer, ComputePipelineDescriptor,
             encase::{StorageBuffer, UniformBuffer, private::WriteInto},
         },
         renderer::RenderDevice,
     },
 };
+use bevy::render::render_resource::ShaderType;
+use bevy::shader::ShaderRef;
 use wgpu::{BufferDescriptor, BufferUsages, util::BufferInitDescriptor};
 
 use crate::{
@@ -264,7 +266,7 @@ impl<'a, W: ComputeWorker> AppComputeWorkerBuilder<'a, W> {
                 layout: S::layouts().to_vec(),
                 push_constant_ranges: S::push_constant_ranges().to_vec(),
                 shader_defs: S::shader_defs().to_vec(),
-                entry_point: Cow::Borrowed(S::entry_point()),
+                entry_point: Some(Cow::Borrowed(S::entry_point())),
                 shader,
                 zero_initialize_workgroup_memory: false,
             });

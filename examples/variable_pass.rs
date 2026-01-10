@@ -1,6 +1,7 @@
 //! Example showing how to execute compute shaders on-demand
 
 use bevy::prelude::*;
+use bevy::shader::ShaderRef;
 use bevy_app_compute::prelude::*;
 
 ///Just some random random unsigned int function to not add unnecessary dependency just for a sake of an example
